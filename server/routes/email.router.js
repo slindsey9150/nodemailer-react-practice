@@ -14,17 +14,27 @@ router.get('/', (req, res) => {
  * POST route template
  */
 
+// let transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     type: "OAuth2",
+//     user: process.env.EMAIL,
+//     pass: process.env.WORD,
+//     clientId: process.env.OAUTH_CLIENTID,
+//     clientSecret: process.env.OAUTH_CLIENT_SECRET,
+//     refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+//   },
+//  });
+// * transporter without OAuth implemented
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    type: "OAuth2",
     user: process.env.EMAIL,
-    pass: process.env.WORD,
-    clientId: process.env.OAUTH_CLIENTID,
-    clientSecret: process.env.OAUTH_CLIENT_SECRET,
-    refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+    pass: process.env.WORD
   },
  });
+ let passwordReset = `
+ Here is your password reset code`
  transporter.verify((err, success) => {
   err
     ? console.log(err)
@@ -40,11 +50,12 @@ let transporter = nodemailer.createTransport({
 
  // * This is the actual route that sends the email
  router.post("/send", function (req, res) {
+  console.log("req.body", req.body);
   let mailOptions = {
     from: "test@gmail.com",
     to: process.env.EMAIL,
     subject: "Nodemailer API",
-    text: "This is a successfully sent email",
+    text: passwordReset,
   };
  
   transporter.sendMail(mailOptions, function (err, data) {
