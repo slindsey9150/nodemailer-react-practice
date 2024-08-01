@@ -5,7 +5,7 @@ import { useState } from "react"
 export default function ResetPasswordCodeConfForm () {
     const [codeAttempt, setCodeAttempt] = useState('')
     const resetCodeStore = useSelector((store) => store.email)
-    const resetCode = resetCodeStore.emailReducer
+    const resetCode = resetCodeStore.emailReducer[0]
     const history = useHistory()
 
     const submitCode = (event) => {

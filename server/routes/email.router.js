@@ -40,21 +40,23 @@ let transporter = nodemailer.createTransport({
     : console.log(`=== Server is ready to take messages: ${success} ===`);
  });
 
- let mailOptions = {
-  from: "test@gmail.com",
-  to: process.env.EMAIL,
-  subject: "Nodemailer API",
-  text: "Hi from your nodemailer API",
- };
+//  let mailOptions = {
+//   from: "test@gmail.com",
+//   to: process.env.EMAIL,
+//   subject: "Nodemailer API",
+//   text: "Hi from your nodemailer API",
+//  };
 
  // * This is the actual route that sends the email
  router.post("/send", function (req, res) {
    let passwordReset = `
- Here is your password reset code ${req.body}`
-  console.log("req.body", req.body);
+ Here is your password reset code ${req.body[0]}`
+  console.log("req.body email", req.body[1]);
+  console.log("req.body number", req.body[0]);
+
   let mailOptions = {
     from: "test@gmail.com",
-    to: process.env.EMAIL,
+    to: req.body[1],
     subject: "Nodemailer API",
     text: passwordReset,
   };

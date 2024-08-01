@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
+import ResetPasswordBtn from '../ResetPasswordBtn/ResetPasswordBtn';
 
 function LoginPage() {
   const history = useHistory();
@@ -19,6 +20,7 @@ function LoginPage() {
         >
           Register
         </button>
+        <ResetPasswordBtn/>
       </center>
     </div>
   );

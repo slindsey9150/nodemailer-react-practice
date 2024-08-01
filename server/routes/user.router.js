@@ -20,11 +20,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-
-  const queryText = `INSERT INTO "user" (username, password)
-    VALUES ($1, $2) RETURNING id`;
+  const email = req.body.email
+  const queryText = `INSERT INTO "user" (username, password, email)
+    VALUES ($1, $2, $3) RETURNING id`;
   pool
-    .query(queryText, [username, password])
+    .query(queryText, [username, password, email])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);
@@ -37,6 +37,7 @@ router.post('/register', (req, res, next) => {
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
+  console.log('req.body', req.body);
   res.sendStatus(200);
 });
 
@@ -49,4 +50,15 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
+router.put('/passwordupdated', (req,res) => {
+  let sqlText = `UPDATE "user" SET "password" = '12345' WHERE "email" = 'stevie.lindsey.jr@gmail.com';`
+  pool.query(sqlText)
+  .then((result) => {
+    res.sendStatus(200)
+  })
+  .catch((error) => {
+    console.log(`Error editing password ${sqlText}`, error);
+    res.sendStatus(500);
+});
+})
 module.exports = router;

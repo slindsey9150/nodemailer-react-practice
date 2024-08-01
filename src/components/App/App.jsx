@@ -19,9 +19,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import ResetPasswordCodeConfForm from '../ResetPasswordCodeConfForm/ResetPasswordCodeConfForm';
+import ResetPasswordConfPage from '../ResetPasswordCodeConfPage/ResetPasswordCodeConfPage';
 import ResetPasswordPage from '../ResetPasswordPage/ResetPasswordPage';
+import ResetPasswordEmailPage from '../ResetPasswordEmailPage/ResetPasswordEmailPage';
 import './App.css';
+import ResetPasswordCodeConfPage from '../ResetPasswordCodeConfPage/ResetPasswordCodeConfPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -68,18 +70,24 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
-          <ProtectedRoute
+          <Route
             exact
             path="/reset-password-code"
           >
-            <ResetPasswordCodeConfForm />
-          </ProtectedRoute>
-          <ProtectedRoute
+            <ResetPasswordCodeConfPage />
+          </Route>
+          <Route
+            exact
+            path="/reset-password-email"
+          >
+            <ResetPasswordEmailPage />
+          </Route>
+          <Route
             exact
             path="/reset-password-page"
           >
             <ResetPasswordPage />
-          </ProtectedRoute>
+          </Route>
 
           <Route
             exact
