@@ -19,7 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
+import ResetPasswordCodeConfForm from '../ResetPasswordCodeConfForm/ResetPasswordCodeConfForm';
+import ResetPasswordPage from '../ResetPasswordPage/ResetPasswordPage';
 import './App.css';
 
 function App() {
@@ -66,6 +67,18 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/reset-password-code"
+          >
+            <ResetPasswordCodeConfForm />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/reset-password-page"
+          >
+            <ResetPasswordPage />
           </ProtectedRoute>
 
           <Route

@@ -33,8 +33,7 @@ let transporter = nodemailer.createTransport({
     pass: process.env.WORD
   },
  });
- let passwordReset = `
- Here is your password reset code`
+
  transporter.verify((err, success) => {
   err
     ? console.log(err)
@@ -50,6 +49,8 @@ let transporter = nodemailer.createTransport({
 
  // * This is the actual route that sends the email
  router.post("/send", function (req, res) {
+   let passwordReset = `
+ Here is your password reset code ${req.body}`
   console.log("req.body", req.body);
   let mailOptions = {
     from: "test@gmail.com",

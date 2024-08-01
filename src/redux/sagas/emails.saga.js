@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* sendEmail(action){
     try{
-        yield axios.post('/api/email/send')
+        yield axios.post('/api/email/send', action.payload)
         yield put({ type: 'RESET_PASSWORD', payload: action.payload });
     }catch(error){
         console.log("error sending email");
