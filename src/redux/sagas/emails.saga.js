@@ -11,7 +11,7 @@ function* sendEmail(action){
 }
 function* resetPassword(action){
     try{
-        // yield axios.put('/api/email/send', action.payload)
+        yield axios.put('/api/user/passwordupdated', [action.payload])
         console.log('action payload for password reset', action.payload);
         // yield put({ type: 'RESET_PASSWORD', payload: action.payload });
     }catch(error){

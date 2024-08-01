@@ -51,8 +51,10 @@ router.post('/logout', (req, res, next) => {
 });
 
 router.put('/passwordupdated', (req,res) => {
-  let sqlText = `UPDATE "user" SET "password" = '12345' WHERE "email" = 'stevie.lindsey.jr@gmail.com';`
-  pool.query(sqlText)
+  console.log("req.body", req.body);
+  const queryParams = [req.body[0]]
+  let sqlText = `UPDATE "user" SET "password" = $1 WHERE "email" = 'stevie.lindsey.jr@gmail.com';`
+  pool.query(sqlText, queryParams)
   .then((result) => {
     res.sendStatus(200)
   })
